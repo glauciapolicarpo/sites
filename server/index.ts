@@ -10,6 +10,7 @@ import { authRouter } from "./routers/auth.js";
 import { gameRouter } from "./routers/game.js";
 import { leaderboardRouter } from "./routers/leaderboard.js";
 import { userRouter } from "./routers/user.js";
+import { statementsRouter } from "./routers/statements.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,6 +20,7 @@ const appRouter = router({
   game: gameRouter,
   leaderboard: leaderboardRouter,
   user: userRouter,
+  statements: statementsRouter,
 });
 
 export type AppRouter = typeof appRouter;

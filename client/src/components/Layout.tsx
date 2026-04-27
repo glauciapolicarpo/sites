@@ -1,7 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { useAuth } from "../hooks/useAuth.js";
 import { Button } from "./ui/button.js";
-import { LogOut, Trophy, User, Home } from "lucide-react";
+import { LogOut, Trophy, User, Home, Wand2 } from "lucide-react";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { user, isAuthenticated, logout } = useAuth();
@@ -40,6 +40,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
             {isAuthenticated ? (
               <>
+                <Link href="/admin/statements">
+                  <Button
+                    variant={location === "/admin/statements" ? "secondary" : "ghost"}
+                    size="sm"
+                  >
+                    <Wand2 className="w-4 h-4 mr-1.5" />
+                    Enunciados
+                  </Button>
+                </Link>
                 <Link href="/profile">
                   <Button
                     variant={location === "/profile" ? "secondary" : "ghost"}
