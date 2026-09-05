@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Uma estrategista de marketing digital com IA para pensar, coordenar e acelerar o seu crescimento." />
+  <title>ORQUESTRA — Sua estratégia de marketing em movimento</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .hero h1 span{z-index:1}.hero h1 span:after{bottom:.12em;z-index:-1}
+    .orbit-agents{position:absolute;inset:0;z-index:1;pointer-events:none;animation:agent-drift 36s linear infinite;transform-origin:50% 50%;will-change:transform}
+    .orbit-agents span{position:absolute;display:grid;place-items:center;width:25px;height:25px;border:1px solid var(--ink);border-radius:50%;background:var(--paper);font:500 13px 'DM Mono';box-shadow:0 3px 0 rgba(0,0,0,.08)}
+    .orbit-agents .agent-a{top:16%;left:23%;color:var(--coral)}.orbit-agents .agent-b{top:34%;right:7%;color:var(--coral)}.orbit-agents .agent-c{bottom:25%;left:8%;background:var(--acid)}.orbit-agents .agent-d{bottom:12%;right:28%;color:var(--coral)}.orbit-agents .agent-e{top:51%;left:2%;background:var(--acid)}
+    @keyframes agent-drift{to{transform:rotate(360deg)}}
+    @media(max-width:760px){.product-section{padding:80px 0}.product-intro{display:block;margin:35px 0}.product-intro h2{font-size:clamp(2.7rem,13vw,5rem)}.product-intro p{margin-top:28px}.dashboard{display:block;box-shadow:7px 7px 0 var(--acid)}.dash-main{border-right:0;border-bottom:1px solid var(--ink)}.dash-main,.dash-side{padding:18px}.dash-title{font-size:1.1rem}}
+    .product-section{padding:125px 4vw;border-bottom:1px solid var(--line)}
+    .product-intro{display:flex;justify-content:space-between;align-items:end;gap:40px;margin:45px 0 55px}.product-intro h2{max-width:760px}.product-intro p{max-width:260px;font:500 11px/1.45 'DM Mono';text-transform:uppercase}
+    .dashboard{display:grid;grid-template-columns:1.2fr .8fr;border:1px solid var(--ink);background:#e9e9e4;box-shadow:12px 12px 0 var(--acid)}.dash-main{padding:25px;border-right:1px solid var(--ink)}.dash-side{padding:25px}.dash-top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:20px}.dash-title{font-size:1.35rem;letter-spacing:-.05em}.dash-status{font:500 10px 'DM Mono';color:var(--coral);text-transform:uppercase}.dash-block{border-top:1px solid var(--line);padding:16px 0}.dash-block:first-of-type{border-top:0}.dash-label{font:500 10px 'DM Mono';text-transform:uppercase;color:var(--muted);margin-bottom:9px}.dash-block strong{display:block;font-size:1.2rem;letter-spacing:-.04em;font-weight:500}.dash-block p{margin:5px 0 0;font-size:.9rem}.task{display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--line);padding:12px 0;font-size:.9rem}.task i{width:10px;height:10px;border:1px solid var(--ink);border-radius:50%;display:block}.task b{margin-left:auto;font:500 9px 'DM Mono';color:var(--coral);text-transform:uppercase}.metric{display:flex;justify-content:space-between;align-items:end;border-bottom:1px solid var(--line);padding:15px 0}.metric strong{font-size:2rem;letter-spacing:-.08em;font-weight:500}.metric span{font:500 10px 'DM Mono';text-transform:uppercase}.approval{margin-top:22px;background:var(--acid);padding:15px}.approval strong{display:block;font-size:1.05rem;letter-spacing:-.04em}.approval p{font-size:.85rem;line-height:1.25;margin:7px 0 13px}.approval button{border:1px solid var(--ink);background:var(--ink);color:var(--paper);padding:9px 11px;font:500 9px 'DM Mono';text-transform:uppercase}
+    .image-wrap:after{content:'Estrategista Digital';position:absolute;z-index:6;top:35%;right:2%;opacity:0;transform:translate(8px,8px);background:var(--ink);color:var(--paper);padding:9px 11px;font:500 10px 'DM Mono';letter-spacing:.05em;text-transform:uppercase;transition:opacity .25s ease,transform .25s ease;pointer-events:none}
+    .image-wrap:hover:after{opacity:1;transform:translate(0,0)}
+    .orbit-agents span{transition:transform .55s cubic-bezier(.2,.8,.2,1),background .55s ease;cursor:help;pointer-events:auto}
+    .orbit-agents span:after{content:attr(data-label);position:absolute;left:50%;bottom:calc(100% + 9px);transform:translate(-50%,6px);opacity:0;white-space:nowrap;background:var(--ink);color:var(--paper);padding:7px 9px;border-radius:2px;font:500 9px 'DM Mono';letter-spacing:.04em;text-transform:uppercase;pointer-events:none;transition:opacity .5s ease,transform .55s cubic-bezier(.2,.8,.2,1)}
+    .orbit-agents span:hover{background:var(--acid);z-index:10}
+    .orbit-agents .agent-a:hover{transform:translate(-10px,-12px) scale(1.5)}
+    .orbit-agents .agent-b:hover{transform:translate(11px,-8px) scale(1.5)}
+    .orbit-agents .agent-c:hover{transform:translate(-12px,8px) scale(1.5)}
+    .orbit-agents .agent-d:hover{transform:translate(10px,10px) scale(1.5)}
+    .orbit-agents .agent-e:hover{transform:translate(-9px,-7px) scale(1.5)}
+    .orbit-agents span:hover:after{opacity:1;transform:translate(-50%,0)}
+    .agent-map{position:relative;height:360px;margin-top:35px;border:1px solid var(--line);overflow:hidden;background:rgba(216,255,57,.12)}
+    .agent-map:before,.agent-map:after{content:'';position:absolute;border:1px solid var(--coral);border-radius:50%;width:210px;height:130px;top:110px;left:50%;transform:translateX(-50%) rotate(-18deg)}
+    .agent-map:after{border-color:var(--acid);transform:translateX(-50%) rotate(28deg);width:190px;height:220px;top:70px}
+    .agent-core{position:absolute;z-index:2;top:50%;left:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:var(--ink);color:var(--acid);font:500 14px 'DM Mono';letter-spacing:.05em}
+    .agent-tag{position:absolute;z-index:3;background:var(--paper);border:1px solid var(--ink);padding:7px 8px;font:500 9px 'DM Mono';text-transform:uppercase;letter-spacing:.03em}
+    .tag-one{top:18px;left:12px}.tag-two{top:55px;right:10px}.tag-three{bottom:52px;left:10px}.tag-four{bottom:18px;right:12px}.tag-five{top:158px;right:8px;color:var(--coral)}
+    .app-shell{position:fixed;inset:0;z-index:30;background:rgba(17,17,17,.7);display:none;align-items:center;justify-content:center;padding:20px}.app-shell.is-open{display:flex}.app-panel{position:relative;width:min(780px,100%);max-height:90vh;overflow:auto;background:var(--paper);border:1px solid var(--ink);padding:34px 5vw 50px;box-shadow:10px 10px 0 var(--acid)}.app-close{position:absolute;right:20px;top:12px;background:none;border:0;font-size:30px;cursor:pointer}.app-brand{font:700 17px 'Space Grotesk';letter-spacing:-.07em;border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:75px}.app-brand span{color:var(--coral);font-weight:400}.app-brand small{float:right;font:500 10px 'DM Mono';letter-spacing:.07em;margin-top:5px}.app-progress{font:500 11px 'DM Mono';letter-spacing:.08em;color:var(--coral);margin-bottom:35px}.app-progress span{float:right;color:var(--muted)}.app-panel h2{font-size:clamp(2.7rem,6vw,5.5rem)}.app-intro{font-size:1.1rem;max-width:510px;line-height:1.25;margin:25px 0 40px}.app-panel input{width:100%;border:0;border-bottom:1px solid var(--ink);background:transparent;padding:15px 0;font:400 1.35rem 'Space Grotesk';outline:0}.app-actions{display:flex;justify-content:space-between;align-items:center;margin-top:45px}.text-button{border:0;background:transparent;font:500 11px 'DM Mono';text-transform:uppercase;cursor:pointer}.profile-header{display:flex;justify-content:space-between}.profile-badge{border:1px solid var(--ink);border-radius:50%;width:75px;height:75px;padding-top:18px;text-align:center;font:500 10px/1.3 'DM Mono';color:var(--coral)}.profile-header mark{background:var(--acid)}.profile-grid{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--ink);margin-top:45px}.profile-grid>div{padding:18px 15px 18px 0;border-bottom:1px solid var(--line)}.profile-grid>div:nth-child(even){padding-left:20px}.profile-grid span{font:500 10px 'DM Mono';color:var(--coral)}.profile-grid p{margin:10px 0 0;font-size:1rem}.julia-message{background:var(--acid);border:1px solid var(--ink);padding:20px;margin-top:28px}.julia-message strong{font:500 11px 'DM Mono'}.julia-message em{color:var(--coral);font-style:normal}.julia-message p{font-size:1.15rem;line-height:1.25}.suggestions{display:flex;flex-wrap:wrap;gap:10px;margin:35px 0}.suggestions button{background:var(--paper);border:1px solid var(--ink);padding:12px;font:500 10px 'DM Mono';text-transform:uppercase;cursor:pointer}
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <a class="brand" href="#top">ORQUESTRA<span>/IA</span></a>
+      <nav><a href="#como-funciona">Como funciona</a><a href="#agentes">Agentes</a><a href="#onboarding">Implementação</a></nav>
+      <a class="header-cta" href="#conversa">Quero conhecer <span>↗</span></a>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow"><i></i> Estratégia + inteligência artificial</p>
+          <h1>Marketing com <em>direção.</em><br><span>Execução</span> e Resultados.</h1>
+          <p class="hero-text">Uma estrategista de marketing digital plena, potencializada por uma equipe de agentes de IA que planeja, cria, executa e aprende com o seu negócio.</p>
+          <a class="primary-button" href="#conversa">Descubra como funciona <b>↗</b></a>
+        </div>
+        <div class="hero-visual">
+          <div class="visual-label">Juliana IA:<br>sua nova estrategista</div>
+          <div class="image-wrap"><img src="public/estrategista.svg" alt="Estrategista de marketing sentada em uma cadeira" /></div>
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <div class="orbit-agents" aria-label="Agentes de marketing"><span class="agent-a" data-label="Redator" title="Redator">✦</span><span class="agent-b" data-label="Designer" title="Designer">◌</span><span class="agent-c" data-label="Gestor de tráfego" title="Gestor de tráfego">↗</span><span class="agent-d" data-label="Analista" title="Analista">✳</span><span class="agent-e" data-label="Social Media" title="Social Media">◎</span></div>
+          <div class="sticker">5 AGENTES IA<br>TRABALHANDO<br>PARA VOCÊ<br><span>✦</span></div>
+        </div>
+      </section>
+
+      <div class="ticker"><div class="ticker-track">ESTRATÉGIA <b>✦</b> PLANEJAMENTO <b>✦</b> ORQUESTRAÇÃO <b>✦</b> CRESCIMENTO <b>✦</b> ESTRATÉGIA <b>✦</b> PLANEJAMENTO <b>✦</b> ORQUESTRAÇÃO <b>✦</b> CRESCIMENTO <b>✦</b></div></div>
+
+      <section class="statement" id="como-funciona">
+        <div class="section-number">01 / A IDEIA<div class="agent-map" aria-label="Agentes especializados conectados à estrategista de IA"><div class="agent-core">IA</div><span class="agent-tag tag-one">Designer</span><span class="agent-tag tag-two">Redator</span><span class="agent-tag tag-three">Webmaster</span><span class="agent-tag tag-four">Tráfego</span><span class="agent-tag tag-five">Social Media</span></div></div>
+        <div><h2>O marketing da sua empresa não precisa de mais tarefas. <mark>Precisa de uma direção.</mark></h2><p>Você tem acesso a especialistas para cada frente do departamento — mas quem conecta tudo, decide prioridades e transforma esforço em resultado?</p></div>
+      </section>
+
+      <section class="product-section" id="painel"><div class="section-number">02 / O PRODUTO</div><div class="product-intro"><h2>Uma central para decidir, coordenar e <mark>aprovar.</mark></h2><p>A Juliana transforma estratégia em uma operação visível, organizada e segura.</p></div><div class="dashboard"><div class="dash-main"><div class="dash-top"><span class="dash-title">Visão geral · Setembro</span><span class="dash-status">● trabalhando</span></div><div class="dash-block"><div class="dash-label">O que a Juliana está priorizando</div><strong>Campanha de aquisição para o serviço principal</strong><p>Objetivo: gerar 80 novos leads qualificados até 30/09.</p></div><div class="dash-block"><div class="dash-label">Tarefas dos agentes</div><div class="task"><i></i>Redator preparando 3 variações de anúncio <b>em andamento</b></div><div class="task"><i></i>Designer criando peças da campanha <b>em andamento</b></div><div class="task"><i></i>Gestor de tráfego revisando públicos <b>próximo</b></div></div></div><div class="dash-side"><div class="dash-label">Resultados da última campanha</div><div class="metric"><strong>+34%</strong><span>Conversão</span></div><div class="metric"><strong>R$ 18,40</strong><span>Custo por lead</span></div><div class="metric"><strong>126</strong><span>Leads gerados</span></div><div class="approval"><strong>2 conteúdos aguardando aprovação</strong><p>Nada é publicado, impulsionado ou alterado sem a sua decisão.</p><button>Revisar conteúdos ↗</button></div></div></div></section>
+
+      <section class="flow-section" id="agentes">
+        <div class="section-number">02 / A ORQUESTRA</div>
+        <div class="flow-heading"><h2>Uma estrategista.<br><span>Vários talentos.</span></h2><p>Os agentes executam. A estrategista pensa o todo.</p></div>
+        <div class="agent-grid">
+          <article><span>01</span><h3>Estratégia</h3><p>Diagnóstico, posicionamento, campanhas e prioridades.</p></article>
+          <article><span>02</span><h3>Conteúdo</h3><p>Redação, social media, roteiros e calendário editorial.</p></article>
+          <article><span>03</span><h3>Criação</h3><p>Design, vídeo, identidade e peças que conversam entre si.</p></article>
+          <article><span>04</span><h3>Performance</h3><p>Tráfego, dados, relatórios e recomendações para crescer.</p></article>
+          <article><span>05</span><h3>Webmaster</h3><p>Landing pages, SEO, atualizações e conversão.</p></article>
+          <article class="agent-feature"><span>06</span><h3>Orquestração</h3><p>A camada inteligente que conecta cada movimento ao seu objetivo de negócio.</p><b>↗</b></article>
+        </div>
+      </section>
+
+      <section class="onboarding" id="onboarding"><div class="section-number">03 / O COMEÇO</div><div><h2>Em poucos passos,<br><mark>marketing em movimento.</mark></h2><div class="steps"><div><span>01</span><p><strong>Imersão</strong>Entendemos seu negócio, mercado, público e metas.</p></div><div><span>02</span><p><strong>Configuração</strong>Construímos a inteligência da sua marca.</p></div><div><span>03</span><p><strong>Plano de ação</strong>Você recebe os próximos 90 dias com clareza.</p></div><div><span>04</span><p><strong>Orquestração</strong>Os agentes começam a trabalhar juntos.</p></div></div></div></section>
+
+      <section class="closing" id="conversa"><p class="eyebrow"><i></i> O próximo movimento começa aqui</p><h2>Menos improviso.<br><span>Mais marketing.</span></h2><p style="font-size:clamp(1.3rem,3vw,2.3rem);font-weight:500;letter-spacing:-.05em;margin:0 0 32px">Menos Custos. Mais resultados!</p><button class="primary-button light" id="start-onboarding">Começar implementação <b>↗</b></button></section>
+    </main>
+    <footer><span>ORQUESTRA/IA © 2026</span><span>Marketing pensado em conjunto.</span><a href="#top">Voltar ao topo ↑</a></footer>
+  </div>
+  <div class="app-shell" id="app-shell" aria-hidden="true"><div class="app-panel"><button class="app-close" id="close-app" aria-label="Fechar">×</button><div class="app-brand">ORQUESTRA<span>/IA</span> <small>IMPLEMENTAÇÃO</small></div><div id="onboarding-view"></div></div></div>
+  <link rel="stylesheet" href="motion.css" />
+  <script src="script.js"></script>
+  <script src="motion.js"></script>
+</body>
+</html>

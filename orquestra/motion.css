@@ -1,0 +1,15 @@
+.dash-status{display:inline-flex;align-items:center;gap:7px}
+.status-pulse{width:6px;height:6px;border-radius:50%;background:var(--coral);animation:status-breathe 2.8s ease-in-out infinite}
+@keyframes status-breathe{50%{opacity:.5;box-shadow:0 0 0 5px rgba(255,112,77,.15)}}
+.product-intro h2 mark{background:linear-gradient(var(--acid),var(--acid)) left 90%/100% 25% no-repeat;color:inherit;transition:background-size 1.2s cubic-bezier(.2,.7,.2,1)}
+.product-intro h2 mark.motion-pending{background-size:0% 25%}
+.onboarding h2 mark{color:var(--coral)}
+.fade-step{transition:opacity .85s ease,transform .85s cubic-bezier(.2,.7,.2,1)}
+.fade-step.motion-pending{opacity:0;transform:translateY(22px)}
+.flow-heading h2>span{display:inline-block;transition:opacity .4s ease,transform .4s ease}
+.flow-heading h2>span.word-out{opacity:0;transform:translateY(7px)}
+#start-onboarding{animation:cta-breathe 3.8s ease-in-out infinite;cursor:pointer}
+#start-onboarding:hover,#start-onboarding:focus-visible{animation-play-state:paused}
+@keyframes cta-breathe{50%{transform:scale(1.025);box-shadow:0 0 0 9px rgba(255,112,77,.09)}}
+.metric strong{font-variant-numeric:tabular-nums}
+@media(prefers-reduced-motion:reduce){.status-pulse,#start-onboarding{animation:none}.fade-step,.flow-heading h2>span,.product-intro h2 mark{transition:none}.motion-pending{opacity:1!important;transform:none!important}.product-intro h2 mark.motion-pending{background-size:100% 25%}}
