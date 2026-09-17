@@ -1,0 +1,10 @@
+# /etc/cron.d/juliana
+#
+# Ingestao diaria as 4h e limpeza das composicoes vencidas as 4h30.
+# O relatorio de cada ingestao fica em /opt/juliana/data/ingest.log.
+
+SHELL=/bin/bash
+PATH=/usr/local/bin:/usr/bin:/bin
+
+0  4 * * * juliana cd /opt/juliana && /usr/bin/npm run ingest >> data/ingest.log 2>&1
+30 4 * * * juliana cd /opt/juliana && /usr/bin/npm run limpeza >> data/limpeza.log 2>&1

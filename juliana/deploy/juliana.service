@@ -1,0 +1,39 @@
+# /etc/systemd/system/juliana.service
+#
+#   sudo cp deploy/juliana.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now juliana
+#   sudo systemctl status juliana
+
+[Unit]
+Description=Juliana - consultora de arte da Multiplos Mayer Mizrahi
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=juliana
+Group=juliana
+WorkingDirectory=/opt/juliana
+EnvironmentFile=/opt/juliana/.env
+ExecStart=/usr/bin/node --import tsx /opt/juliana/src/index.ts
+Restart=always
+RestartSec=5
+
+# O log vai para o journal, que ja faz rotacao.
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=juliana
+
+# A chave da API vive aqui dentro: o processo nao precisa de mais nada.
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/juliana/data
+ProtectKernelTunables=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+
+[Install]
+WantedBy=multi-user.target

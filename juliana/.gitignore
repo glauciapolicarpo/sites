@@ -1,0 +1,12 @@
+node_modules/
+.env
+*.log
+
+# A pasta de dados e gerada: banco, recortes, composicoes e transcricoes.
+# Git nao consegue reincluir um arquivo dentro de um diretorio excluido, por
+# isso o padrao e "data/*" e nao "data/".
+data/*
+!data/.gitkeep
+!data/dimensoes-override.csv.exemplo
+
+widget/dist/

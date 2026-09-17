@@ -1,0 +1,21 @@
+<!--
+  ENTREGAVEL C - Tag do GTM
+  Tipo: HTML personalizado
+  Acionador: Todas as paginas
+
+  Conteudo exato para colar na tag. Nada alem disto vai para o container:
+  o bundle do widget fica no nosso dominio, com versionamento e cache proprios.
+  A decisao de onde a Juliana aparece esta no codigo do widget, para poder ser
+  ajustada sem tocar no container.
+-->
+<script>
+(function(){
+  if (window.__julianaCarregada) return;
+  window.__julianaCarregada = true;
+  var s = document.createElement('script');
+  s.src = 'https://juliana.multiplosmm.com.br/widget.js?v=1';
+  s.async = true;
+  s.setAttribute('data-api', 'https://juliana.multiplosmm.com.br');
+  document.head.appendChild(s);
+})();
+</script>
