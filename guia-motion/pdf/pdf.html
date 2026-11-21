@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Skill Do Caos ao Método: Motion</title>
+<style>
+@font-face { font-family: "Oswald"; src: url("{{FONTS}}Oswald-Variable.woff2") format("woff2"); font-weight: 200 700; }
+@font-face { font-family: "Figtree"; src: url("{{FONTS}}Figtree-Variable.woff2") format("woff2"); font-weight: 300 900; }
+@font-face { font-family: "Bricolage Grotesque"; src: url("{{FONTS}}BricolageGrotesque-Variable.woff2") format("woff2"); font-weight: 200 800; }
+@font-face { font-family: "Caveat CC"; src: url("{{FONTS}}Caveat-Variable.woff2") format("woff2"); font-weight: 400 700; }
+:root {
+  --fundo: #FBF6EE; --sutil: #F3E8D8; --tinta: #14262D; --suave: #4F6269; --borda: #E2D3BE;
+  --destaque: #B83A04; --pessego: #FFE1CE; --petroleo: #235463; --vivo: #FF5B1F;
+  --noite: #061D29; --noite-e: #0D2E3E; --areia: #F0DDB8; --azul: #316675; --azul-c: #5AA0B5; --sucesso: #1E7B63;
+}
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--fundo); color: var(--tinta); font: 400 10pt/1.55 "Figtree", sans-serif; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.pg { width: 210mm; height: 297mm; overflow: hidden; padding: 18mm 18mm 20mm; position: relative; page-break-after: always; break-after: page; }
+.pg.flow { height: auto; overflow: visible; page: codigo; padding: 0 18mm; }
+@page codigo { size: A4; margin: 16mm 0; }
+.pg.flow pre { -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.pg:last-child { page-break-after: auto; }
+.rodape { position: absolute; left: 18mm; right: 18mm; bottom: 10mm; display: flex; justify-content: space-between; font-size: 8pt; color: var(--suave); border-top: 1px solid var(--borda); padding-top: 3mm; }
+.noite { background: var(--noite); color: var(--areia);
+  background-image: linear-gradient(rgba(90,160,181,.08) 1.5px, transparent 1.5px), linear-gradient(90deg, rgba(90,160,181,.08) 1.5px, transparent 1.5px); background-size: 9mm 9mm; }
+.noite .rodape { border-color: var(--azul); color: var(--azul-c); }
+h1, h2, h3, h4 { margin: 0; }
+p { margin: 0 0 3mm; }
+.kicker { font: 800 8pt/1 "Figtree"; letter-spacing: .12em; text-transform: uppercase; color: var(--destaque); margin-bottom: 3mm; }
+.noite .kicker { color: var(--azul-c); }
+.mao { font-family: "Caveat CC"; font-weight: 700; }
+h2.metodo { font: 700 30pt/1 "Oswald"; text-transform: uppercase; margin-bottom: 6mm; }
+h3 { font: 800 14pt/1.2 "Bricolage Grotesque"; margin: 6mm 0 2.5mm; }
+h4 { font: 700 11pt/1.3 "Figtree"; margin: 4mm 0 1.5mm; }
+.lede { font-size: 12.5pt; line-height: 1.55; max-width: 150mm; }
+ul, ol { margin: 0 0 3mm; padding-left: 5mm; }
+li { margin-bottom: 1.2mm; }
+.caixa { background: #fff; border: 1px solid var(--borda); border-radius: 4mm; padding: 5mm 6mm; margin: 3mm 0 4mm; break-inside: avoid; }
+.dica { background: var(--pessego); border-radius: 4mm; padding: 4mm 5mm; margin: 3mm 0; break-inside: avoid; }
+.dica b { color: var(--destaque); }
+.prompt { background: var(--noite-e); color: var(--areia); border-radius: 3mm; padding: 3.5mm 5mm; margin: 2mm 0 3mm; font-size: 10pt; line-height: 1.5; break-inside: avoid; border-left: 0; }
+.prompt .rot { display: block; font: 800 7pt/1 "Figtree"; letter-spacing: .12em; color: var(--azul-c); margin-bottom: 1.5mm; text-transform: uppercase; }
+.prompt em { color: var(--vivo); font-style: normal; font-weight: 700; }
+table { width: 100%; border-collapse: collapse; margin: 2mm 0 4mm; font-size: 9pt; break-inside: avoid; }
+th, td { text-align: left; vertical-align: top; padding: 2.2mm 3mm; border-bottom: 1px solid var(--borda); }
+th { font: 800 7pt/1.2 "Figtree"; letter-spacing: .1em; text-transform: uppercase; color: var(--suave); background: var(--sutil); }
+td.c { font: 700 10pt/1.2 "Oswald"; text-transform: uppercase; white-space: nowrap; }
+pre { background: var(--noite); color: var(--areia); border-radius: 3mm; padding: 5mm; font: 7.6pt/1.45 "DejaVu Sans Mono", "Liberation Mono", monospace; white-space: pre-wrap; word-break: break-word; margin: 0; }
+.num { display: inline-grid; place-items: center; width: 10mm; height: 10mm; border-radius: 50%; background: var(--petroleo); color: #fff; font: 700 14pt/1 "Oswald"; margin-right: 3mm; vertical-align: middle; }
+.etapa-h { display: flex; align-items: center; margin: 7mm 0 3mm; }
+.etapa-h h3 { margin: 0; }
+.check { list-style: none; padding: 0; }
+.check li { padding-left: 7mm; position: relative; margin-bottom: 2mm; }
+.check li::before { content: ""; position: absolute; left: 0; top: 1.2mm; width: 3.6mm; height: 3.6mm; border: 1.6px solid var(--petroleo); border-radius: 1mm; }
+.grade2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+.quadros { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4mm; margin-top: 6mm; }
+.quadros img { width: 100%; border-radius: 3mm; border: 1.5px solid var(--azul); display: block; }
+.quadros span { display: block; font-size: 8pt; color: var(--azul-c); margin-top: 1.5mm; text-align: center; }
+.sumario { list-style: none; padding: 0; margin: 0; }
+.sumario li { display: flex; gap: 4mm; align-items: baseline; padding: 2.6mm 0; border-bottom: 1px solid var(--borda); font-size: 11.5pt; }
+.sumario b { font: 700 13pt/1 "Oswald"; color: var(--destaque); width: 9mm; }
+code { font: 9pt "DejaVu Sans Mono", monospace; background: var(--sutil); padding: .3mm 1.2mm; border-radius: 1mm; }
+.sw { display: inline-block; width: 4mm; height: 4mm; border-radius: 1mm; vertical-align: -0.6mm; margin-right: 1.5mm; border: 1px solid rgba(0,0,0,.15); }
+</style>
+</head>
+<body>
+
+<!-- CAPA -->
+<section class="pg noite" style="display:flex; flex-direction:column; justify-content:space-between;">
+  <div>
+    <p class="kicker">Skill para Claude Code · Motion feito com código</p>
+    <h1 style="font: 700 58pt/0.92 'Oswald'; text-transform: uppercase; margin-top: 18mm;">Do caos<br>ao método</h1>
+    <p class="mao" style="font-size: 40pt; line-height: 1; color: var(--vivo); margin: 3mm 0 0 2mm; transform: rotate(-3deg); display:inline-block; border-bottom: 1.6mm solid var(--azul-c);">com IA</p>
+    <p class="lede" style="margin-top: 14mm; color: var(--areia);">A skill completa para criar vídeos animados com o seu tema e o seu design system, do primeiro pedido ao MP4 pronto para publicar.</p>
+  </div>
+  <div class="quadros">
+    <div><img src="{{IMG:guia-motion/pdf/quadro-caos.jpg}}" alt=""><span>o caos</span></div>
+    <div><img src="{{IMG:guia-motion/pdf/quadro-revelacao.jpg}}" alt=""><span>a revelação</span></div>
+    <div><img src="{{IMG:guia-motion/pdf/quadro-etapa2.jpg}}" alt=""><span>as etapas</span></div>
+    <div><img src="{{IMG:guia-motion/pdf/quadro-final.jpg}}" alt=""><span>a assinatura</span></div>
+  </div>
+  <p style="font: 700 12pt/1.3 'Bricolage Grotesque'; margin: 0;">Glaucia Policarpo · Claude Criativo<br><span style="font: 400 10pt 'Figtree'; color: var(--azul-c);">@claudecriativo · contato@claudecriativo.com.br</span></p>
+</section>
+
+<!-- SUMÁRIO + COMO USAR -->
+<section class="pg">
+  <p class="kicker">Neste material</p>
+  <h2 class="metodo">O que você vai encontrar</h2>
+  <ol class="sumario">
+    <li><b>1</b>Antes de começar: requisitos e instalação</li>
+    <li><b>2</b>A ideia central: um roteiro, dois resultados</li>
+    <li><b>3</b>As 8 etapas com os pedidos prontos</li>
+    <li><b>4</b>Modelo de briefing e de roteiro em compassos</li>
+    <li><b>5</b>Do design system ao vídeo: o que extrair</li>
+    <li><b>6</b>Mapa de sons por tipo de cena</li>
+    <li><b>7</b>Checklist do diretor e erros comuns</li>
+    <li><b>8</b>O arquivo SKILL.md completo</li>
+    <li><b>9</b>Referência: o roteiro em código do vídeo-modelo</li>
+  </ol>
+
+  <div class="rodape"><span>Skill Do Caos ao Método · Motion</span><span>2</span></div>
+</section>
+
+<section class="pg">
+  <p class="kicker">1. Antes de começar</p>
+  <h2 class="metodo">Requisitos e instalação</h2>
+  <h4>Você precisa de</h4>
+  <ul>
+    <li><b>Claude Code</b> no terminal, no app ou no navegador.</li>
+    <li><b>Node.js 22 ou mais novo</b>, <b>ffmpeg</b> e <b>Chrome ou Chromium</b> no computador onde o Claude Code roda. Nos ambientes em nuvem do Claude Code eles normalmente já vêm instalados.</li>
+    <li>O seu <b>design system</b> ou, no mínimo, as cores, as fontes (arquivos) e o logo da marca.</li>
+  </ul>
+  <h4>Instalação da skill</h4>
+  <ol>
+    <li>Crie a pasta <code>.claude/skills/motion-do-caos-ao-metodo/</code> dentro do seu projeto (para usar só nele) ou em <code>~/.claude/skills/</code> (para todos os projetos).</li>
+    <li>Salve dentro dela um arquivo <code>SKILL.md</code> com o texto completo da seção 8.</li>
+    <li>Abra uma nova sessão do Claude Code. A skill passa a ser usada quando você pedir um vídeo animado, ou quando você digitar <code>/motion-do-caos-ao-metodo</code>.</li>
+  </ol>
+  <div class="dica"><b>Sobre o motor de animação.</b> A skill funciona melhor junto com a skill <code>animation-studio</code>, que desenha os quadros e sintetiza a trilha. Se ela não estiver disponível na sua conta, a própria skill orienta o Claude a montar um motor mínimo com Canvas, Playwright e ffmpeg. O resultado continua bom, mas a primeira execução leva mais tempo.</div>
+  <div class="rodape"><span>Skill Do Caos ao Método · Motion</span><span>3</span></div>
+</section>
+
+<!-- IDEIA CENTRAL -->
+<section class="pg">
+  <p class="kicker">2. A ideia central</p>
+  <h2 class="metodo">Um roteiro, dois resultados</h2>
+  <p class="lede">O vídeo nasce de um único arquivo de roteiro, o <code>score.js</code>. Nele estão o ritmo, os acordes, cada texto e o momento exato de cada evento. Dois outros arquivos leem esse roteiro: um gera a música e o outro desenha as cenas.</p>
+  <table>
+    <thead><tr><th>Arquivo</th><th>O que faz</th><th>Quando você mexe</th></tr></thead>
+    <tbody>
+      <tr><td class="c">score.js</td><td>Tempo (BPM), acordes, textos, itens de cada etapa e os momentos de corte.</td><td>Para trocar textos, a ordem das cenas ou a duração.</td></tr>
+      <tr><td class="c">song.js</td><td>Gera a trilha: cada evento do roteiro vira um som.</td><td>Para mudar instrumentos ou o clima da música.</td></tr>
+      <tr><td class="c">film.js</td><td>Desenha cada quadro a partir do tempo, com as cores e as fontes da marca.</td><td>Para mudar o visual das cenas.</td></tr>
+      <tr><td class="c">assets/</td><td>Fontes, logo e imagens copiados do design system.</td><td>Para trocar a identidade visual.</td></tr>
+    </tbody>
+  </table>
+  <h3>Por que isso resolve o caos</h3>
+  <ul>
+    <li><b>Sincronia garantida.</b> Imagem e som leem o mesmo tempo, então um corte nunca "escorrega" da batida.</li>
+    <li><b>Mudança barata.</b> Trocar um texto é mudar uma linha e renderizar de novo. Não existe linha do tempo para arrastar.</li>
+    <li><b>Reaproveitamento.</b> O mesmo roteiro gera outras versões: outro tema, outro formato, outra marca.</li>
+  </ul>
+  <h3>Pense em compassos, não em segundos</h3>
+  <p>Um compasso é um grupo de 4 batidas. A 100 BPM, cada batida dura 0,6 s e cada compasso dura 2,4 s. Todo corte de cena cai no começo de um compasso, e cada elemento que entra cai numa batida. É isso que dá ao vídeo a sensação de "editado na música".</p>
+  <table>
+    <thead><tr><th>BPM</th><th>1 batida</th><th>1 compasso</th><th>Combina com</th></tr></thead>
+    <tbody>
+      <tr><td>80</td><td>0,75 s</td><td>3,0 s</td><td>reflexão, depoimento, tom acolhedor</td></tr>
+      <tr><td>100</td><td>0,6 s</td><td>2,4 s</td><td>explainer, aula, passo a passo (o vídeo-modelo)</td></tr>
+      <tr><td>120</td><td>0,5 s</td><td>2,0 s</td><td>promo, lançamento, energia alta</td></tr>
+    </tbody>
+  </table>
+  <div class="rodape"><span>Skill Do Caos ao Método · Motion</span><span>4</span></div>
+</section>
+
+<!-- ETAPAS 1-4 -->
+<section class="pg">
+  <p class="kicker">3. As 8 etapas</p>
+  <h2 class="metodo">Do pedido ao vídeo</h2>
+  <p>Os trechos em <b style="color: var(--vivo)">laranja</b> nos pedidos são os campos que você troca pelo seu conteúdo.</p>
+
+  <div class="etapa-h"><span class="num">1</span><h3>Inventário: saber o que temos</h3></div>
+  <p>Antes de pedir o vídeo, descubra o que a sua sessão já oferece. Isso evita pedir algo que a ferramenta não faz e mostra atalhos que você não conhecia.</p>
+  <div class="prompt"><span class="rot">Pedido</span>Quais recursos de vídeo e de motion graphic feito com código temos nesta sessão? Só uma lista com a função de cada um.</div>
+
+  <div class="etapa-h"><span class="num">2</span><h3>Pedido com a skill</h3></div>
+  <p>Diga o tipo, o formato, o tema e onde está a marca. Com isso, o Claude só pergunta o que faltar.</p>
+  <div class="prompt"><span class="rot">Pedido</span>Use a skill motion-do-caos-ao-metodo. Quero um <em>explainer</em> em <em>9:16 para Reels</em> sobre <em>[seu tema]</em>, com o design system <em>[nome ou link]</em>.</div>
+
+  <div class="etapa-h"><span class="num">3</span><h3>Briefing em uma rodada</h3></div>
+  <p>Se faltar informação, o Claude faz no máximo uma rodada de perguntas, com opções para escolher: tipo, formato e marca. Duração, música e cores ele decide sozinho e avisa o que decidiu. Responda escolhendo; se quiser algo específico, escreva na opção "Outro".</p>
+  <div class="dica"><b>Dica.</b> Se você já sabe as três etapas do seu método e a mensagem final, mande junto. É o conteúdo que mais muda o resultado.</div>
+
+  <div class="etapa-h"><span class="num">4</span><h3>Repertório: o design system vem primeiro</h3></div>
+  <p>Peça para ver o que será aplicado antes de qualquer desenho. Você corrige agora, quando custa pouco.</p>
+  <div class="prompt"><span class="rot">Pedido</span>Leia o design system <em>[link]</em> e me mostre, antes de desenhar: as cores com o papel de cada uma, as fontes, o logo e as regras de uso que você vai aplicar no vídeo.</div>
+  <p>A lista completa do que extrair está na seção 5.</p>
+  <div class="rodape"><span>Skill Do Caos ao Método · Motion</span><span>5</span></div>
+</section>
+
+<!-- ETAPAS 5-8 -->
+<section class="pg">
+  <div class="etapa-h" style="margin-top:0"><span class="num">5</span><h3>Roteiro em compassos</h3></div>
+  <p>Peça o roteiro em tabela antes do código. É o momento de ajustar a história.</p>
+  <div class="prompt"><span class="rot">Pedido</span>Monte o roteiro em compassos numa tabela com compassos, imagem e som, antes de escrever código. O problema é <em>[a dor do seu público]</em>. As três etapas são <em>[etapa 1]</em>, <em>[etapa 2]</em> e <em>[etapa 3]</em>. A mensagem final é <em>[frase]</em>.</div>
+
+  <div class="etapa-h"><span class="num">6</span><h3>Trilha gerada em código</h3></div>
+  <p>A música é gerada a partir do roteiro. Você não precisa saber teoria musical; basta dizer o clima.</p>
+  <div class="prompt"><span class="rot">Pedido</span>Gere a trilha com clima <em>[acolhedor / enérgico / calmo]</em>. Mostre os níveis de cada parte da música e masterize em -14 LUFS.</div>
+
+  <div class="etapa-h"><span class="num">7</span><h3>Cenas e quadros de teste</h3></div>
+  <p>Antes do vídeo inteiro, peça quadros de teste. Renderizar 12 quadros leva segundos; o vídeo inteiro leva minutos.</p>
+  <div class="prompt"><span class="rot">Pedido</span>Renderize uma folha de contato com 12 quadros do filme e os quadros de cada corte. Revise como diretor: texto sobreposto, área segura do Reels, um destaque por tela, fontes da marca carregadas. Corrija e me mostre de novo.</div>
+
+  <div class="etapa-h"><span class="num">8</span><h3>Vídeo final, sincronia e versão</h3></div>
+  <div class="prompt"><span class="rot">Pedido</span>Renderize o vídeo final, verifique a sincronia em cada corte e me diga a duração, a resolução e o tamanho do arquivo.</div>
+  <div class="prompt"><span class="rot">Depois, se quiser</span>Troque o texto da etapa <em>2</em> por <em>[novo texto]</em> e renderize de novo. · Faça a versão <em>16:9</em> reencenando as cenas, sem cortar. · Faça commit e push do projeto.</div>
+  <div class="dica"><b>Sobre o som.</b> O Claude não ouve o áudio. Ele mede volume e sincronia. A escuta final é sua: ouça com fone antes de publicar.</div>
+  <div class="rodape"><span>Skill Do Caos ao Método · Motion</span><span>6</span></div>
+</section>
+
+<!-- MODELOS -->
+<section class="pg">
+  <p class="kicker">4. Modelos</p>
+  <h2 class="metodo">Briefing e roteiro</h2>
+  <h3 style="margin-top:0">Modelo de briefing</h3>
+  <div class="caixa">
+    <table style="margin:0">
+      <tbody>
+        <tr><td style="width:42mm"><b>Tipo</b></td><td>explainer · promo de marca · infográfico animado · vídeo de texto</td></tr>
+        <tr><td><b>Formato</b></td><td>9:16 (Reels, TikTok, Shorts) · 16:9 (YouTube) · 1:1 ou 4:5 (feed)</td></tr>
+        <tr><td><b>Tema</b></td><td>uma frase sobre o assunto</td></tr>
+        <tr><td><b>Público</b></td><td>para quem é, e o que essa pessoa sente antes de ver o vídeo</td></tr>
+        <tr><td><b>Problema (caos)</b></td><td>até 4 palavras soltas que mostram a dor (ex.: "ideia solta", "prompt vago")</td></tr>
+        <tr><td><b>3 etapas</b></td><td>título curto de cada etapa (até 14 caracteres) + uma frase de apoio</td></tr>
+        <tr><td><b>Itens por etapa</b></td><td>3 itens curtos, e o tipo: cartões, diálogo ou checklist</td></tr>
+        <tr><td><b>Mensagem final</b></td><td>uma frase, com uma palavra para destacar</td></tr>
+        <tr><td><b>Assinatura</b></td><td>logo, @perfil e uma frase à mão</td></tr>
+        <tr><td><b>Marca</b></td><td>link do design system ou: cores, arquivos das fontes, logo</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>Roteiro de explainer em compassos (100 BPM, ~32 s)</h3>
+  <table>
+    <thead><tr><th>Compassos</th><th>Cena</th><th>Imagem</th><th>Som que a imagem toca</th></tr></thead>
+    <tbody>
+      <tr><td>0–1</td><td class="c">Caos</td><td>Título de impacto em duas linhas; um elemento cresce; palavras soltas à mão</td><td>Caixinha em tom menor, uma nota por crescimento</td></tr>
+      <tr><td>2</td><td class="c">Virada</td><td>Pergunta à mão; o elemento se organiza</td><td>Riser e um oitavo de silêncio</td></tr>
+      <tr><td>3</td><td class="c">Revelação</td><td>Ícone ou logo da marca e o título do método</td><td>Bateria entra, prato, acorde</td></tr>
+      <tr><td>4–5</td><td class="c">Etapa 1</td><td>Título, frase de apoio, 3 itens</td><td>Um som por item</td></tr>
+      <tr><td>6–7</td><td class="c">Etapa 2</td><td>Idem</td><td>Outro timbre</td></tr>
+      <tr><td>8–9</td><td class="c">Etapa 3</td><td>Idem</td><td>Outro timbre, subindo</td></tr>
+      <tr><td>10</td><td class="c">Mensagem</td><td>Frase final com uma palavra destacada</td><td>Acorde no destaque</td></tr>
+      <tr><td>11–12</td><td class="c">Final</td><td>Logo, @perfil, frase à mão (2 s ou mais parado)</td><td>Sinos e acorde longo</td></tr>
+    </tbody>
+  </table>
+  <div class="rodape"><span>Skill Do Caos ao Método · Motion</span><span>7</span></div>
+</section>
+
+<!-- DESIGN SYSTEM + SONS -->
+<section class="pg">
+  <p class="kicker">5. Do design system ao vídeo</p>
+  <h2 class="metodo">O que extrair</h2>
+  <table>
+    <thead><tr><th>Do design system</th><th>Vira no vídeo</th><th>No vídeo-modelo</th></tr></thead>
+    <tbody>
+      <tr><td>Fundo escuro de impacto</td><td>Fundo de todas as cenas</td><td><span class="sw" style="background:#061D29"></span>noite</td></tr>
+      <tr><td>Texto sobre o fundo escuro</td><td>Títulos e textos</td><td><span class="sw" style="background:#F0DDB8"></span>areia</td></tr>
+      <tr><td>Cor de ação</td><td>Um destaque por tela: etapa atual, palavra-chave</td><td><span class="sw" style="background:#FF5B1F"></span>laranja-vivo</td></tr>
+      <tr><td>Cor de ilustração</td><td>O "caos": rabiscos, traços</td><td><span class="sw" style="background:#F04828"></span>laranja-caos</td></tr>
+      <tr><td>Linhas e apoio</td><td>Grade, trilha de etapas, rótulos</td><td><span class="sw" style="background:#5AA0B5"></span>azul-circuito-claro</td></tr>
+      <tr><td>Superfície elevada</td><td>Cartões e balões</td><td><span class="sw" style="background:#0D2E3E"></span>noite-elevada</td></tr>
+      <tr><td>Fonte de impacto</td><td>Títulos em caixa alta</td><td>Oswald</td></tr>
+      <tr><td>Fonte de texto</td><td>Frases de apoio, itens</td><td>Figtree</td></tr>
+      <tr><td>Fonte manuscrita</td><td>Anotações, palavras do caos</td><td>Caveat</td></tr>
+      <tr><td>Regras de uso</td><td>Limites que o Claude respeita</td><td>1 laranja-vivo por tela; sem emoji</td></tr>
+      <tr><td>Logo e ícones</td><td>Revelação e assinatura, sem redesenhar</td><td>Logo e cérebro do projeto</td></tr>
+    </tbody>
+  </table>
+  <div class="dica"><b>Logo com fundo próprio.</b> Se a imagem do logo tem um fundo que não bate com o do vídeo, peça: "recorte a área útil do logo e esfumace as bordas para fundir com o fundo".</div>
+
+  <p class="kicker" style="margin-top: 8mm">6. Mapa de sons</p>
+  <table>
+    <thead><tr><th>Cena ou elemento</th><th>Som</th><th>Efeito em quem assiste</th></tr></thead>
+    <tbody>
+      <tr><td>Caos</td><td>Caixinha de música em tom menor, sem bateria</td><td>Inquietação leve</td></tr>
+      <tr><td>Virada</td><td>Ruído subindo + silêncio curto</td><td>Expectativa</td></tr>
+      <tr><td>Revelação e cortes</td><td>Prato + bumbo + flash na imagem</td><td>"Agora começou"</td></tr>
+      <tr><td>Cartões</td><td>Marimba, notas subindo</td><td>Acúmulo, organização</td></tr>
+      <tr><td>Diálogo</td><td>Pluck (você) e sino (IA)</td><td>Conversa, ida e volta</td></tr>
+      <tr><td>Checklist</td><td>Sino subindo a cada visto</td><td>Conquista</td></tr>
+      <tr><td>Final</td><td>Sinos e acorde maj9 longo, fade de 1,2 s</td><td>Fechamento calmo</td></tr>
+    </tbody>
+  </table>
+  <p>Volume final: <b>-14 LUFS</b> com pico de -1,5 dBTP, o padrão de Instagram e YouTube.</p>
+  <div class="rodape"><span>Skill Do Caos ao Método · Motion</span><span>8</span></div>
+</section>
+
+<!-- CHECKLIST -->
+<section class="pg">
+  <p class="kicker">7. Revisão</p>
+  <h2 class="metodo">Checklist do diretor</h2>
+  <div class="grade2">
+    <div>
+      <h4 style="margin-top:0">Imagem</h4>
+      <ul class="check">
+        <li>Os textos estão dentro da área segura (no 9:16: livre o topo, a base e a lateral direita).</li>
+        <li>Nenhum texto encosta em outro, nem o acento de um título no rótulo acima.</li>
+        <li>As fontes da marca carregaram (nenhuma fonte genérica no lugar).</li>
+        <li>Só um destaque na cor de ação por tela.</li>
+        <li>O logo aparece inteiro, sem caixa de fundo aparente.</li>
+        <li>Os elementos principais têm tamanho para ler no celular (texto de 44 px ou mais em 1080 px).</li>
+        <li>O final fica parado 2 s ou mais antes do fade.</li>
+      </ul>
+    </div>
+    <div>
+      <h4 style="margin-top:0">Som e entrega</h4>
+      <ul class="check">
+        <li>Todo corte marcado passou na verificação (som ±20 ms, imagem ±1 quadro).</li>
+        <li>Volume em -14 LUFS.</li>
+        <li>Você ouviu com fone antes de publicar.</li>
+        <li>Os textos dizem só o que a marca pode afirmar.</li>
+        <li>O MP4 tem H.264 + AAC, 1080 px de largura.</li>
+        <li>O projeto foi versionado (commit) com o MP4 final.</li>
+      </ul>
+    </div>
+  </div>
+  <h3>Erros comuns e a correção</h3>
+  <table>
+    <thead><tr><th>O que aparece</th><th>Por que acontece</th><th>Como corrigir</th></tr></thead>
+    <tbody>
+      <tr><td>Vídeo genérico, sem a cara da marca</td><td>O pedido veio antes do repertório</td><td>Faça a etapa 4 antes de qualquer desenho</td></tr>
+      <tr><td>Rótulo encostando no acento do título</td><td>Pouco espaço entre linhas com acentos (Ê, Ã)</td><td>Peça para afastar o rótulo e o título em ~40 px</td></tr>
+      <tr><td>Elemento central pequeno</td><td>A forma cresceu pouco no roteiro</td><td>Peça para aumentar a escala e conferir no quadro</td></tr>
+      <tr><td>Logo com retângulo em volta</td><td>Fundo da imagem diferente do fundo do vídeo</td><td>Recortar e esfumaçar as bordas</td></tr>
+      <tr><td>Som atrasado num corte</td><td>Tempo escrito em dois lugares</td><td>Corrigir no score.js, nunca só num lado</td></tr>
+      <tr><td>Texto escondido pelos botões do app</td><td>Centralizado na tela, não na área segura</td><td>Centralizar na área segura</td></tr>
+      <tr><td>Versão 16:9 cortada</td><td>Recorte do vídeo vertical</td><td>Reencenar as cenas para o novo formato</td></tr>
+    </tbody>
+  </table>
+  <div class="rodape"><span>Skill Do Caos ao Método · Motion</span><span>9</span></div>
+</section>
+
+<!-- SKILL.md -->
+<section class="pg flow">
+  <p class="kicker">8. O arquivo da skill</p>
+  <h2 class="metodo" style="margin-bottom:3mm">SKILL.md completo</h2>
+  <p>Copie o texto abaixo, do primeiro <code>---</code> até o fim, para <code>.claude/skills/motion-do-caos-ao-metodo/SKILL.md</code>.</p>
+  <pre>{{SKILL}}</pre>
+</section>
+
+<!-- SCORE -->
+<section class="pg flow">
+  <p class="kicker">9. Referência</p>
+  <h2 class="metodo" style="margin-bottom:3mm">O roteiro do vídeo-modelo</h2>
+  <p>Este é o <code>score.js</code> real do vídeo "Do caos ao método com IA". Use como referência para pedir ajustes: troque os textos, as etapas e as cores pelos seus e peça ao Claude para renderizar de novo.</p>
+  <pre>{{SCORE}}</pre>
+</section>
+
+<!-- FECHAMENTO -->
+<section class="pg noite" style="display:flex; flex-direction:column; justify-content:center; align-items:flex-start;">
+  <p class="kicker">Agora é com você</p>
+  <h2 style="font: 700 46pt/1.05 'Oswald'; text-transform: uppercase;">A IA acelera.<br>Quem decide</h2>
+  <p style="font: 700 46pt/1 'Oswald'; text-transform: uppercase; background: var(--vivo); color: #14262D; padding: 1mm 4mm 2mm; border-radius: 2mm; margin-top: 3mm; transform: rotate(-1.5deg);">é você.</p>
+  <p class="mao" style="font-size: 30pt; color: var(--azul-c); margin-top: 10mm;">pense junto, revise sempre</p>
+  <p style="font: 700 12pt/1.3 'Bricolage Grotesque'; margin-top: 16mm;">Glaucia Policarpo · Claude Criativo<br><span style="font: 400 10pt 'Figtree'; color: var(--azul-c);">@claudecriativo · contato@claudecriativo.com.br</span></p>
+</section>
+
+</body>
+</html>
